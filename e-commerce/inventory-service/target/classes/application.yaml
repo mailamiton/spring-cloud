@@ -1,0 +1,13 @@
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://admin:admin123@${EUREKAHOST:localhost}:8761/eureka/
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
+  instance:
+    leaseRenewalIntervalInSeconds: 20
+    leaseExpirationDurationInSeconds: 2

@@ -10,5 +10,4 @@ public interface IAccountService {
 
     Account getAccountInfo(Account account) throws EntityNotFoundException;
     boolean withdrawAmount(Account account) throws InSufficientFundException;
-
 }

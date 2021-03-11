@@ -4,21 +4,26 @@ import com.amit.exception.EntityNotFoundException;
 import com.amit.exception.InSufficientFundException;
 import com.amit.model.Account;
 import com.amit.persist.IAccount;
+import com.amit.util.Receiver;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 @Service
-public class AccountServiceImpl implements  IAccountService{
+public class AccountServiceImpl implements  IAccountService {
 
     @Autowired
     IAccount accountRepo;
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
+    @Autowired
+    private Receiver receiver;
 
     @Value("${spring.rabbitmq.exchange}")
     private  String exchange;
@@ -45,6 +50,7 @@ public class AccountServiceImpl implements  IAccountService{
                 //save updated balance
                 accountRepo.save(accnt);
                 rabbitTemplate.convertAndSend(exchange, routingkey, accnt);
+
             }else {
                 throw new InSufficientFundException(AccountServiceImpl.class, "Amount", Integer.toString(account.getBalance()));
             }
@@ -52,4 +58,6 @@ public class AccountServiceImpl implements  IAccountService{
 
         return true;
     }
+
+
 }

@@ -8,6 +8,9 @@ com/amit/model/exception/ApiError.class
 com/amit/persist/IAccount.class
 com/amit/exception/InSufficientFundException.class
 com/amit/model/Account.class
+com/amit/util/Receiver.class
 com/amit/controller/RestExceptionHandler.class
+com/amit/util/RabbitMQListner.class
+com/amit/util/RabbitMqConfig.class
 com/amit/util/MasterData.class
 com/amit/controller/AccountController.class

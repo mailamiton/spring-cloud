@@ -8,12 +8,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="account-service" />
         <module name="eureka-server" />
+        <module name="inventory-service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
       <module name="account-service" target="1.8" />
       <module name="e-commerce" target="1.8" />
       <module name="eureka-server" target="1.8" />
+      <module name="inventory-service" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
